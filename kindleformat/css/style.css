@@ -1,0 +1,140 @@
+body {
+  font-family: 'Droid Serif', arial, serif;
+  background-color: #DDDDDD;
+}
+
+#container {
+  margin:0 auto;
+  width: 800px;
+  text-align:center;
+}
+
+#header {
+  background: #DDDDDD;
+}
+
+#leftBar {
+  float: left; 
+  width: 150px;
+  height:100%;
+  margin-right: -20px;
+  background-color: rgba(244,244,244,0.1);
+}
+
+#content {
+  width: 600px;
+  margin: 0px auto;
+  height: 925px;
+  position: relative;
+  /*background-color: rgba(244,244,244,0.8);*/
+  background-image: url('bg.png');
+  background-repeat:no-repeat;
+  background-size: 600px;
+  overflow: hidden;
+  text-align:justify;
+}
+
+#booktitle {
+	position: absolute; 
+	font-size: 6px;
+	top: 9%;
+	left: 18.5%;
+	color: rgb(77,77,77);
+}
+
+#percentpages {
+	position: absolute;
+	font-size: .75em;
+	bottom: 28.6%;
+	left: 18%;
+	color: rgb(22,22,22);
+}
+
+#numpages {
+	position: absolute;
+	font-size: .8em;
+	bottom: 28.6%;
+	right: 18%;
+	color: rgb(22,22,22);
+}
+
+ul {
+	  margin:0 auto; 
+	  padding:0; 
+	  position:relative; 
+	  width:100%; 
+	  height:100%; 
+	  background:transparent; 
+  }
+li {
+	  list-style-type:none; 
+	  width:104px; 
+	  height:100px;
+	  position:absolute;
+  }
+li:hover { background-color: rgba(244,244,0,.5) }
+
+#text {
+	position: absolute; 
+	top: 16%;
+	left: 17%; 
+	width: 66.5%;
+	height: 51%;
+	line-height: 1.5;
+	font-weight: bold;
+	font-size: 90%;
+	color: rgb(77,77,77);
+	overflow: hidden;
+}
+#text p {
+  margin-bottom: 0 }
+#text p + p {
+  text-indent: 1.5em;
+  margin-top: 0 }
+
+#nl { 
+	position: absolute; 
+	top: 417px;
+	right: 580px;
+	height: 195px;
+	width: 20px;
+	z-index:100;
+}
+
+#nr { 
+	position: absolute; 
+	top: 417px;
+	right: 0;
+	height: 195px;
+	width: 20px;
+	z-index:100;
+}
+
+#pr { 
+	position: absolute; 
+	top: 315px;
+	right: 0;
+	width: 20px;
+	z-index:100;
+}
+
+#pl { 
+	position: absolute; 
+	top: 315px;
+	right: 580px;
+	width: 20px;
+	z-index:100;
+}
+
+#rightBar { 
+  float:left; 
+  width: 150px;
+  height:100%;
+  margin-left: -20px;
+  background-color: rgba(244,244,244,0.1);
+}
+
+#footer { 
+  clear:both;
+  background:#DDDDDD;
+} 

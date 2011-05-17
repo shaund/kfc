@@ -1,0 +1,117 @@
+<html>
+<head>
+	<title>Kindle</title>
+	
+	<link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+</head>
+	
+<body onload="load()">
+	<div id="container">
+		<!--
+		<div onClick="previous()" id="leftBar">
+			left
+		</div>
+		-->
+		 
+		<div id="header"></div>
+		<div id="content">
+			<div id="booktitle">{{title}}</div>
+			<ul>
+				<li onClick="next()" id="nl"></li>
+				<li  onClick="next()" id="nr"></li>
+				
+				<li onClick="previous()" id="pr"></li>
+				<li onClick="previous()" id="pl"></li>
+			</ul>
+			<div id="percentpages"></div>
+			<div id="numpages">{{length}}</div>
+			<div id="text"></div>
+		</div>
+		<!--
+		<div onClick="next()" id="rightBar">
+			right
+		</div>
+		-->
+		<div id="footer">
+			<a onClick="beginning()" style="cursor:crosshair">goto beginning</a>
+		</div>
+	</div>
+	
+	<script>
+		var page=0;
+		var totpage=0;
+		document.getElementById("header").innerHTML = page;
+		function previous(){
+			page--;
+			downloadUrl("/load", "POST", "page=" + page, completed);
+		}
+		function next(){
+			page++;
+			downloadUrl("/load", "POST", "page=" + page, completed);
+		}
+		function beginning(){
+			page=0;
+			downloadUrl("/load", "POST", "page=" + page, completed);
+		}
+		function completed(responseText){
+			document.getElementById("text").innerHTML = responseText;
+			document.getElementById("header").innerHTML = page;
+			var x = page*100/totpage;
+			x = Math.ceil(x).toString()+"%";
+			document.getElementById("percentpages").innerHTML = x;
+		}
+		function load() {
+			downloadUrl("/load", "POST", "page=0", completed);
+			totpage=document.getElementById("numpages").innerHTML
+		}
+		function downloadUrl(url, type, data, callback) {
+			var status = -1;
+			var request = createXmlHttpRequest();
+			if (!request) {
+				return false;
+			}
+			request.onreadystatechange = function() {
+				if (request.readyState == 4) {
+					try {
+						status = request.status;
+					} catch (e) {
+					}
+					if (status == 200) {
+						callback(request.responseText);
+						request.onreadystatechange = function() {};
+					}
+				}
+			}
+			request.open(type, url, true);
+			if (type == "POST") {
+				request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			}
+			try {
+				request.send(data);
+			} catch (e) {
+				changeStatus(e);
+			}
+		};
+		function downloadScript(url) {
+			var script = document.createElement('script');
+			script.src = url;
+			document.body.appendChild(script);
+		}
+		function createXmlHttpRequest() {
+			try {
+				if (typeof ActiveXObject != 'undefined') {
+					return new ActiveXObject('Microsoft.XMLHTTP');
+				} else if (window["XMLHttpRequest"]) {
+					return new XMLHttpRequest();
+				}
+			} catch (e) {
+				changeStatus(e);
+			}
+			return null;
+		};
+	</script>
+	
+</body>
+</html>

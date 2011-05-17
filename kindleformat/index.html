@@ -1,0 +1,44 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/css/style.css" />
+	<link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	
+
+
+</head>
+<body>
+	
+
+	<div id="container">
+		<div id="header">
+			Header
+		</div>
+		
+		<div id="leftBar">
+			left
+		</div>
+		<script>
+		$('#menu a').click(function(event) {
+                event.preventDefault();
+                var page = $(this).attr('href');
+                $('#text').load(page);
+        });
+		</script>
+		<div id="content">
+			<div id="text">
+				<a href="text.htm">load</a>
+			</div>
+		</div>
+		
+		<div id="rightBar">
+			Right Bar
+		</div>
+		
+		<div id="footer">
+		Footer
+		</div>
+	</div>
+
+</body>
+</html>
